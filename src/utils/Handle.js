@@ -7,20 +7,24 @@ function onError(err, req, res, next) {
   res.status(500).end(err.toString());
 }
 
+function noMatchRoute(req, res) {
+  req.status(404).send("page is not found");
+}
+
 const handler = nc({
   onError: onError,
-  onNoMatch: (req, res) => {
-    res.status(404).send("Page is not found");
-  },
+  onNoMatch: noMatchRoute,
   attachParams: true,
 }).use(dbConnect);
 
 export default handler;
 
-export const protectedHandler = nc({
+const protectedHandler = nc({
   attachParams: true,
-  onNoMatch: (req, res) => {
-    req.status(404).send("page is not found");
-  },
+  onNoMatch: noMatchRoute,
   onError: onError,
-}).use(verifyToken);
+})
+  .use(dbConnect)
+  .use(verifyToken);
+
+export { protectedHandler };

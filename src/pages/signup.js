@@ -9,11 +9,10 @@ import {
   LoginContainer,
 } from "../styles/FormStyling.styled";
 import axios from "axios";
-import { API_ROUTES } from "../Helpers/ApiManage";
+import { API_ROUTES } from "../utils/ApiManage";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { isAuthenticated } from "../Helpers/AuthHandler";
-import { cookiesMethods, localStorageMethods } from "../Helpers/helper";
+import { cookiesMethods, localStorageMethods } from "../utils/helper";
 
 export default function signup() {
   const [inputFields, setInputFields] = useState({
@@ -101,19 +100,4 @@ export default function signup() {
       </p>
     </LoginContainer>
   );
-}
-
-export async function getServerSideProps(context) {
-  const { isLoggedIn, user } = await isAuthenticated(context);
-  if (isLoggedIn && user !== null) {
-    return {
-      redirect: {
-        destination: "/users",
-        permanent: false,
-      },
-    };
-  }
-  return {
-    props: {},
-  };
 }

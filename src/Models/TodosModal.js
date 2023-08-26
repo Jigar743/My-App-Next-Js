@@ -15,11 +15,13 @@ const todoScheema = new mongoose.Schema(
   { timestamps: true }
 );
 
-let Todo;
-if (mongoose.models && mongoose.models.todos) {
-  Todo = mongoose.models.todos;
-} else {
-  Todo = mongoose.model("todos", userSchema);
-}
+const Todo =
+  (mongoose.models && mongoose.models.todos) ||
+  mongoose.model("todos", todoScheema);
+// if (mongoose.models && mongoose.models.todos) {
+//   Todo = mongoose.models.todos;
+// } else {
+//   Todo = mongoose.model("todos", todoScheema);
+// }
 
 export default Todo;

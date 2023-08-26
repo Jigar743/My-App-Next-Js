@@ -1,4 +1,4 @@
-import { generateToken } from "../Helpers/tokenGenerate";
+import { generateToken } from "../utils/tokenGenerate";
 import User from "../Models/UsersModal";
 import * as bcrypt from "bcrypt";
 
@@ -10,7 +10,6 @@ const signupUser = async (req, res) => {
     name,
     email,
     password,
-    createdAt: Date.now(),
     active: true,
   });
 

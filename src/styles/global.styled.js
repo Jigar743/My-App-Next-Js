@@ -3,9 +3,11 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
     *{
         font-family: "Bebas Neue", cursive;
-    }
-    body{
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
+    }
+    body{
+        height: 100%;
     }
 `;

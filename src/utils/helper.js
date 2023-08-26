@@ -47,3 +47,21 @@ export const cookiesMethods = {
   get: (key) => Cookies.get(key),
   delete: (key) => Cookies.remove(key),
 };
+
+export const sidebarList = [
+  {
+    title: "Users",
+    redirection: "/users",
+  },
+  {
+    title: "Todos",
+    redirection: "/todos"
+  },
+  {
+    title: "Money spend spliter",
+    redirection: "/money-spliter"
+  }
+]
+
+export const publicRoute = ["/login", "/signup"];
+

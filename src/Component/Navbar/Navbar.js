@@ -2,17 +2,19 @@ import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import styles from "../../styles/global.module.css";
 import Cookies from "js-cookie";
+import { AuthContext } from "../Context/Auth";
 
-function Navbar({ isLoggedIn, loginUser }) {
+function Navbar() {
   const router = useRouter();
   const [popOverToggle, setPopOverToggle] = useState(false);
+  const { isUserLoggedIn, logout } = useContext(AuthContext);
 
   return (
     <div className={styles.navbar}>
       <div className={styles.navbar_brand}>
         <p>Brand</p>
       </div>
-      {!isLoggedIn ? (
+      {!isUserLoggedIn ? (
         <>
           <div className={styles.navbar_links}>
             <div>
@@ -47,19 +49,12 @@ function Navbar({ isLoggedIn, loginUser }) {
                   <a
                     href="#"
                     onClick={() => {
-                      router.push(`/users/${loginUser._id.toString()}`);
+                      router.replace(`/users/edit-user`);
                     }}
                   >
                     Edit Profile
                   </a>
-                  <a
-                    href="#"
-                    onClick={() => {
-                      Cookies.remove("token");
-                      localStorage.removeItem("token");
-                      router.replace("/login");
-                    }}
-                  >
+                  <a href="#" onClick={logout}>
                     Logout
                   </a>
                 </div>

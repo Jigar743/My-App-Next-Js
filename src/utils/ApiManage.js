@@ -12,5 +12,6 @@ export const API_ROUTES = {
   signupUser: `${clientURL}/auth/signup`,
   loginUser: `${clientURL}/auth/signin`,
   getAllUsers: `${clientURL}/users`,
+  getCurrentUser: `${clientURL}/users/me`,
   updateUsers: (id) => `${clientURL}/users/${id}`,
 };
