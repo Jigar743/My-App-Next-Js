@@ -1,11 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import { isAuthenticated } from "../../Helpers/AuthHandler";
 import axios from "axios";
-import { API_ROUTES } from "../../Helpers/ApiManage";
+import { API_ROUTES } from "../../utils/ApiManage";
+import { UsersListStyled } from "../../styles/Users.styled";
+import { AuthContext } from "../../Component/Context/Auth";
 
-export default function UserPage({ isLoggedIn, loginUser }) {
+export default function UserPage() {
   const [users, setUsers] = useState([]);
-  const { _id, name, email, active, createdAt, updatedAt } = loginUser;
+  const { isUserLoggedIn, currentUser } = useContext(AuthContext);
+  const { _id } = currentUser;
+
+  console.log({ isUserLoggedIn, currentUser });
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -20,8 +24,8 @@ export default function UserPage({ isLoggedIn, loginUser }) {
   }, []);
 
   return (
-    <div>
-      <ul>
+    <>
+      <UsersListStyled>
         {users?.map((u) => {
           return (
             <li key={u._id.toString()}>
@@ -29,26 +33,7 @@ export default function UserPage({ isLoggedIn, loginUser }) {
             </li>
           );
         })}
-      </ul>
-    </div>
+      </UsersListStyled>
+    </>
   );
-}
-
-export async function getServerSideProps(context) {
-  const { isLoggedIn, user } = await isAuthenticated(context);
-  if (!isLoggedIn && !user) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  } else {
-    return {
-      props: {
-        isLoggedIn,
-        loginUser: user,
-      },
-    };
-  }
 }

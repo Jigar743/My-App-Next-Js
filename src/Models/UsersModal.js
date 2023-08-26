@@ -23,12 +23,14 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-let User;
+const User =
+  (mongoose.models && mongoose.models.users) ||
+  mongoose.model("users", userSchema);
 
-if (mongoose.models && mongoose.models.users) {
-  User = mongoose.models.users;
-} else {
-  User = mongoose.model("users", userSchema);
-}
+// if (mongoose.models && mongoose.models.users) {
+//   User = mongoose.models.users;
+// } else {
+//   User = mongoose.model("users", userSchema);
+// }
 
 export default User;

@@ -1,5 +1,5 @@
 import { loginUser } from "../../../Controllers/AuthController";
-import handler from "../../../Helpers/Handle";
+import handler from "../../../utils/Handle";
 
 handler.post(loginUser);
 

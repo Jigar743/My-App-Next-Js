@@ -9,7 +9,7 @@ export const generateToken = (user) => {
   };
   const token = jwt.sign(
     u,
-    process.env.JWT_SECRET,
+    process.env.NEXT_PUBLIC_JWT_SECRET,
     { algorithm: "HS256" },
     {
       expiresIn: 60 * 60 * 24, // expires in 24 hours

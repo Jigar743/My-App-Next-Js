@@ -10,12 +10,11 @@ import {
   Image,
 } from "../styles/FormStyling.styled";
 import axios from "axios";
-import { API_ROUTES } from "../Helpers/ApiManage";
+import { API_ROUTES } from "../utils/ApiManage";
 import Link from "next/link";
-import Cookies from "js-cookie";
 import { useRouter } from "next/router";
-import { isAuthenticated } from "../Helpers/AuthHandler";
-import { cookiesMethods, localStorageMethods } from "../Helpers/helper";
+import Cookies from "js-cookie";
+import { cookiesMethods, localStorageMethods } from "../utils/helper";
 
 export default function login() {
   const [inputFields, setInputFields] = useState({
@@ -41,7 +40,7 @@ export default function login() {
         });
         localStorageMethods.setItem("token", response.data.token);
         cookiesMethods.set("token", response.data.token);
-        router.replace("/users");
+        router.replace("/");
       }
     } catch (error) {
       console.log({ error });
@@ -86,19 +85,4 @@ export default function login() {
       </p>
     </LoginContainer>
   );
-}
-
-export async function getServerSideProps(context) {
-  const { isLoggedIn, user } = await isAuthenticated(context);
-  if (isLoggedIn && user !== null) {
-    return {
-      redirect: {
-        destination: "/users",
-        permanent: false,
-      },
-    };
-  }
-  return {
-    props: {},
-  };
 }
