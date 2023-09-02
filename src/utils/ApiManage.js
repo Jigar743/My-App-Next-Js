@@ -15,3 +15,25 @@ export const API_ROUTES = {
   getCurrentUser: `${clientURL}/users/me`,
   updateUsers: (id) => `${clientURL}/users/${id}`,
 };
+
+// axios.interceptors.request.use(
+//   async (config) => {
+//     const token = cookiesMethods.get("token");
+//     if (token) {
+//       config.headers.Authorization = `${token}`;
+//     }
+
+//     return config;
+//   },
+//   (err) => Promise.reject(err)
+// );
+
+// axios.interceptors.response.use(undefined, (error) => {
+//   const { status } = error?.response;
+//   const { logout } = useContext(AuthContext);
+//   if (status === 403) {
+//     logout();
+//     return Promise.reject(err);
+//   }
+//   return Promise.reject(err);
+// });

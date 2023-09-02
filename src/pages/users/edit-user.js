@@ -3,7 +3,7 @@ import { formatDate } from "../../utils/helper";
 import { useRouter } from "next/router";
 import { AuthContext } from "../../Component/Context/Auth";
 
-export default function UserPage() {
+export default function EditMePage() {
   const router = useRouter();
   const { currentUser } = useContext(AuthContext);
 

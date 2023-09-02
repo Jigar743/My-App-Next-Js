@@ -16,7 +16,7 @@ import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import { cookiesMethods, localStorageMethods } from "../utils/helper";
 
-export default function login() {
+export default function loginPage() {
   const [inputFields, setInputFields] = useState({
     email: "",
     password: "",
@@ -80,8 +80,13 @@ export default function login() {
           <Button type="submit">Login</Button>
         </Fieldset>
       </Form>
-      <p>
-        Don't have Account? <Link href={"/signup"}>Create New Account</Link>
+      <p style={{ display: "flex", justifyContent: "space-between" }}>
+        <span>
+          Don't have Account? <Link href={"/signup"}>Create New Account</Link>
+        </span>
+        <span>
+          <Link href={"/forget-password"}>Forget Password?</Link>
+        </span>
       </p>
     </LoginContainer>
   );

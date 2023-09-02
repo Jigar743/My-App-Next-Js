@@ -14,7 +14,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { cookiesMethods, localStorageMethods } from "../utils/helper";
 
-export default function signup() {
+export default function signupPage() {
   const [inputFields, setInputFields] = useState({
     name: "",
     email: "",
@@ -39,7 +39,7 @@ export default function signup() {
         });
         localStorageMethods.setItem("token", response.data.token);
         cookiesMethods.set("token", response.data.token);
-        router.replace("/users");
+        router.replace("/");
       }
     } catch (error) {
       console.log({ signupErr: error });

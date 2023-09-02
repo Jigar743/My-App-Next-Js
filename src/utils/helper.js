@@ -22,6 +22,15 @@ export const convertDateIntoTwoDigit = (nu) => {
   return nu;
 };
 
+export const getTime = (date) => {
+  const hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours(),
+    miniutes = date.getMinutes();
+
+  const isAM = date.getHours() > 12 ? "PM" : "AM";
+
+  return hours + ":" + miniutes + " " + isAM;
+};
+
 // Formating Date like : 01 Jan 2023
 export const formatDate = (dateObj) => {
   const date = new Date(dateObj);
@@ -31,7 +40,9 @@ export const formatDate = (dateObj) => {
     " " +
     months[date.getMonth()] +
     " " +
-    date.getFullYear();
+    date.getFullYear() +
+    " At " +
+    getTime(date);
   return format;
 };
 
@@ -55,13 +66,17 @@ export const sidebarList = [
   },
   {
     title: "Todos",
-    redirection: "/todos"
+    redirection: "/todos",
   },
   {
     title: "Money spend spliter",
-    redirection: "/money-spliter"
-  }
-]
+    redirection: "/money-spliter",
+  },
+];
 
-export const publicRoute = ["/login", "/signup"];
-
+export const publicRoute = [
+  "/login",
+  "/signup",
+  "/otp-verification",
+  "/forget-password",
+];

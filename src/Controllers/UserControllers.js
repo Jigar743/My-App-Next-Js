@@ -1,15 +1,14 @@
 import User from "../Models/UsersModal";
 import jwt from "jsonwebtoken";
 
-
 const getCurrentUser = async (req, res) => {
   const token = req.cookies.token;
   if (!token) {
-    res.status(403).json({ message: "UnAuthorised User!" });
+    res.status(403).json({ message: "Unauthorised User!" });
   } else {
     jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET, async (err, tmp) => {
       if (err) {
-        res.status(403).json({ message: "UnAuthorized User!" });
+        res.status(403).json({ message: "Unauthorized User!" });
       }
       await User.findById({ _id: tmp._id })
         .then((user) => {
@@ -18,7 +17,7 @@ const getCurrentUser = async (req, res) => {
           }
         })
         .catch((err) =>
-          res.status(403).json({ message: "UnAuthorized User!" })
+          res.status(403).json({ message: "Unauthorized User!" })
         );
     });
   }

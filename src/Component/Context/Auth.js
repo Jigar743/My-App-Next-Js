@@ -27,7 +27,6 @@ export default function AuthProvider({ children }) {
           });
 
           if (response.status === 200) {
-            console.log({ response });
             const { user } = response.data;
             setUserLoggedIn(true);
             setCurrentUser(user);
@@ -43,9 +42,9 @@ export default function AuthProvider({ children }) {
   const logout = () => {
     setUserLoggedIn(false);
     setCurrentUser(null);
-    router.replace("/login");
     localStorageMethods.deleteItem("token");
     cookiesMethods.delete("token");
+    router.replace("/login");
   };
 
   return (

@@ -4,12 +4,10 @@ import { API_ROUTES } from "../../utils/ApiManage";
 import { UsersListStyled } from "../../styles/Users.styled";
 import { AuthContext } from "../../Component/Context/Auth";
 
-export default function UserPage() {
+export default function UsersPage() {
   const [users, setUsers] = useState([]);
-  const { isUserLoggedIn, currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const { _id } = currentUser;
-
-  console.log({ isUserLoggedIn, currentUser });
 
   useEffect(() => {
     const fetchUsers = async () => {

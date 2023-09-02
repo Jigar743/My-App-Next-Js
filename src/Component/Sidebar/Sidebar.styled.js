@@ -5,7 +5,7 @@ export const SidebarStyled = styled.div`
   background-color: hsl(60deg 1.82% 89.22%);
   border-radius: 10px;
   padding: 20px 40px;
-  height: 100vh;
+  height: 85vh;
   margin-left: 25px;
   ul {
     list-style-type: none;
