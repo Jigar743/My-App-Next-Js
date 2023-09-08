@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { ForgetPasswordStyled } from "../styles/global.styled";
 import {
   Button,
@@ -12,6 +12,7 @@ import Link from "next/link";
 
 export default function ForgetPasswordPage() {
   const [email, setEmail] = useState("");
+
   return (
     <ForgetPasswordStyled>
       <Form method="POST">

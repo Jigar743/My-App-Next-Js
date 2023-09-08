@@ -24,6 +24,7 @@ export const config = {
     "/forget-password",
     "/users/:path*",
     "/todos/:path*",
+    "/file-upload/:path*",
     "/",
   ], //  "/users/:path*", "/todos/:path*", "/"
 };

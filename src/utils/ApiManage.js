@@ -14,6 +14,7 @@ export const API_ROUTES = {
   getAllUsers: `${clientURL}/users`,
   getCurrentUser: `${clientURL}/users/me`,
   updateUsers: (id) => `${clientURL}/users/${id}`,
+  fileUpload: `${clientURL}/media`,
 };
 
 // axios.interceptors.request.use(

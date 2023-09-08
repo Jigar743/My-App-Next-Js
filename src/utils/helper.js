@@ -68,10 +68,14 @@ export const sidebarList = [
     title: "Todos",
     redirection: "/todos",
   },
+  // {
+  //   title: "Money spend spliter",
+  //   redirection: "/money-spliter",
+  // },
   {
-    title: "Money spend spliter",
-    redirection: "/money-spliter",
-  },
+    title: "File Upload",
+    redirection: "/file-upload"
+  }
 ];
 
 export const publicRoute = [
