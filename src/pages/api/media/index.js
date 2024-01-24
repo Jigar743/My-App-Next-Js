@@ -1,5 +1,5 @@
 import { S3 } from "aws-sdk";
-import handler from "../../../utils/Handle";
+import handler from "@/utils/Handle";
 import { randomUUID } from "crypto";
 
 const s3 = new S3({
@@ -41,7 +41,7 @@ handler.get(async (req, res) => {
     ContentType: type,
   };
 
-  await s3.getSignedUrl("putObject", s3Params, (err, uploadUrl) => {
+  s3.getSignedUrl("putObject", s3Params, (err, uploadUrl) => {
     if (err) {
       res.status(500).json({
         error: true,

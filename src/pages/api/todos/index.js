@@ -1,5 +1,5 @@
-import { getAllTodos } from "../../../Controllers/TodosController";
-import { protectedHandler } from "../../../utils/Handle";
+import { getAllTodos } from "@/server/controllers/TodosController";
+import { protectedHandler } from "@/utils/Handle";
 
 protectedHandler.get(getAllTodos);
 

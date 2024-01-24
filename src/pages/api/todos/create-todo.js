@@ -1,5 +1,5 @@
-import { createTodo } from "../../../Controllers/TodosController";
-import { protectedHandler } from "../../../utils/Handle";
+import { createTodo } from "@/server/controllers/TodosController";
+import { protectedHandler } from "@/utils/Handle";
 
 protectedHandler.post(createTodo);
 

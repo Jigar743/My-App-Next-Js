@@ -31,9 +31,9 @@ export const API_ROUTES = {
 
 // axios.interceptors.response.use(undefined, (error) => {
 //   const { status } = error?.response;
-//   const { logout } = useContext(AuthContext);
 //   if (status === 403) {
-//     logout();
+//     // logout();
+//     Router.replace("/login");
 //     return Promise.reject(err);
 //   }
 //   return Promise.reject(err);

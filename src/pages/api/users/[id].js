@@ -1,8 +1,5 @@
-import {
-  deleteUserById,
-  updateUserById,
-} from "../../../Controllers/UserControllers";
-import { protectedHandler } from "../../../utils/Handle";
+import { deleteUserById, updateUserById } from "@/server/controllers/UserControllers";
+import { protectedHandler } from "@/utils/Handle";
 
 protectedHandler.put(updateUserById).delete(deleteUserById);
 
