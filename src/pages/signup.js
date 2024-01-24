@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   Button,
   Fieldset,
@@ -7,29 +7,39 @@ import {
   Input,
   Label,
   LoginContainer,
-} from "../styles/FormStyling";
+} from "../styles/FormStyling.styled";
 import axios from "axios";
-import { API_ROUTES } from "../Helpers/ApiManage";
+import { API_ROUTES } from "../utils/ApiManage";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { cookiesMethods, localStorageMethods } from "../utils/helper";
 
 export default function signup() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [inputFields, setInputFields] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const router = useRouter();
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-
+    const { name, email, password } = inputFields;
     try {
       const response = await axios.post(API_ROUTES.signupUser, {
         name,
         email,
         password,
       });
-      if (response) {
-        setName("");
-        setEmail("");
-        setPassword("");
+      if (response.status === 201) {
+        setInputFields({
+          name: "",
+          email: "",
+          password: "",
+        });
+        localStorageMethods.setItem("token", response.data.token);
+        cookiesMethods.set("token", response.data.token);
+        router.replace("/users");
       }
     } catch (error) {
       console.log({ signupErr: error });
@@ -38,7 +48,7 @@ export default function signup() {
 
   return (
     <LoginContainer>
-      <Form onSubmit={handleSubmit}>
+      <Form method="POST" onSubmit={handleSubmit}>
         <Fieldset signupForm>
           <FormField>
             <Label htmlFor="nameId">Name: </Label>
@@ -48,8 +58,10 @@ export default function signup() {
               name="userName"
               placeholder="Enter name"
               required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={inputFields.name}
+              onChange={(e) =>
+                setInputFields((v) => ({ ...v, name: e.target.value }))
+              }
             />
           </FormField>
           <FormField topMargin>
@@ -60,8 +72,10 @@ export default function signup() {
               name="userEmail"
               placeholder="Enter email"
               required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={inputFields.email}
+              onChange={(e) =>
+                setInputFields((v) => ({ ...v, email: e.target.value }))
+              }
             />
           </FormField>
           <FormField topMargin>
@@ -72,8 +86,10 @@ export default function signup() {
               name="userPassword"
               placeholder="Enter password"
               required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={inputFields.password}
+              onChange={(e) =>
+                setInputFields((v) => ({ ...v, password: e.target.value }))
+              }
             />
           </FormField>
           <Button type="submit">Signup</Button>

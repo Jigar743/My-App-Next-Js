@@ -1,13 +1,8 @@
 // This file is for fetching all the users
+import { verifyToken } from "../../../Controllers/MiddlewareController";
+import { getAllUsers } from "../../../Controllers/UserControllers";
+import { protectedHandler } from "../../../utils/Handle";
 
-import dbConnect from "../../../Helpers/DBConnect";
-import handler from "../../../Helpers/Handle";
-import { generateToken } from "../../../Helpers/tokenGenerate";
-import Users from "../../../Models/Users";
-import * as bcrypt from "bcrypt";
+protectedHandler.use(verifyToken).get(getAllUsers);
 
-handler.get(getUsers);
-
-async function getUsers(req, res) {}
-
-export default handler;
+export default protectedHandler;
