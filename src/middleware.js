@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
 import { publicRoute } from "./utils/helper";
 
 export function middleware(request) {
@@ -8,11 +7,24 @@ export function middleware(request) {
   const isPublicRoute = publicRoute.includes(pathname);
 
   if (!token && !isPublicRoute) {
-    return NextResponse.rewrite(new URL("/login", request.url));
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
+
+  if (token && isPublicRoute) {
+    return NextResponse.redirect(new URL("/", request.url));
   }
 }
 
 // Supports both a single string value or an array of matchers
 export const config = {
-  matcher: ["/", "/login", "/signup", "/users/:path*", "/todos/:path*"],
+  matcher: [
+    "/login",
+    "/signup",
+    "/otp-verification",
+    "/forget-password",
+    "/users/:path*",
+    "/todos/:path*",
+    "/file-upload/:path*",
+    "/",
+  ], //  "/users/:path*", "/todos/:path*", "/"
 };

@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { formatDate } from "../../utils/helper";
+import { AuthContext } from "@/client/context/Auth/Auth";
+import { formatDate } from "@/utils/helper";
 import { useRouter } from "next/router";
-import { AuthContext } from "../../Component/Context/Auth";
+import { useContext } from "react";
 
-export default function UserPage() {
+export default function EditMePage() {
   const router = useRouter();
   const { currentUser } = useContext(AuthContext);
 

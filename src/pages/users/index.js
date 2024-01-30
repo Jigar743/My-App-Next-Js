@@ -1,15 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { API_ROUTES } from "../../utils/ApiManage";
-import { UsersListStyled } from "../../styles/Users.styled";
-import { AuthContext } from "../../Component/Context/Auth";
+import { AuthContext } from "@/client/context/Auth/Auth";
+import { API_ROUTES } from "@/utils/ApiManage";
+import { UsersListStyled } from "@/client/styles/Users.styled";
 
-export default function UserPage() {
+export default function UsersPage() {
   const [users, setUsers] = useState([]);
-  const { isUserLoggedIn, currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const { _id } = currentUser;
-
-  console.log({ isUserLoggedIn, currentUser });
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -24,16 +22,14 @@ export default function UserPage() {
   }, []);
 
   return (
-    <>
-      <UsersListStyled>
-        {users?.map((u) => {
-          return (
-            <li key={u._id.toString()}>
-              {u.name} {_id.toString() === u._id.toString() && "(You)"}
-            </li>
-          );
-        })}
-      </UsersListStyled>
-    </>
+    <UsersListStyled>
+      {users?.map((u) => {
+        return (
+          <li key={u._id.toString()}>
+            {u.name} {_id.toString() === u._id.toString() && "(You)"}
+          </li>
+        );
+      })}
+    </UsersListStyled>
   );
 }

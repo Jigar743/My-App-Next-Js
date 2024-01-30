@@ -1,8 +1,8 @@
-import Layout from "../Component/Layout/Layout";
-import { GlobalStyle } from "../styles/global.styled";
-import CustomThemeProvider from "../Component/CustomThemeProvider/CustomThemeProvider";
-import AuthProvider from "../Component/Context/Auth";
-import ProtectedRoute from "../Component/Context/ProtectedRoute";
+import AuthProvider from "@/client/context/Auth/Auth";
+import ProtectedRoute from "@/client/context/Auth/ProtectedRoute";
+import CustomThemeProvider from "@/client/context/Theme/CustomThemeProvider";
+import Layout from "@/client/components/Layout/Layout";
+import { GlobalStyle } from "@/client/styles/global.styled";
 import Head from "next/head";
 
 export default function App({ Component, pageProps }) {

@@ -1,5 +1,5 @@
-import { getCurrentUser } from "../../../Controllers/UserControllers";
-import handler from "../../../utils/Handle";
+import { getCurrentUser } from "@/server/controllers/UserControllers";
+import handler from "@/utils/Handle";
 
 handler.get(getCurrentUser);
 
