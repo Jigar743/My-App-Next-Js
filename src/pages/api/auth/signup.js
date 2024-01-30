@@ -1,5 +1,5 @@
-import { signupUser } from "../../../Controllers/AuthController";
-import handler from "../../../utils/Handle";
+import { signupUser } from "@/server/controllers/AuthController";
+import handler from "@/utils/Handle";
 
 handler.post(signupUser);
 

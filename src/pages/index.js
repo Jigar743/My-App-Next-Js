@@ -1,10 +1,8 @@
 import React from "react";
 
-function HomePage() {
+export default function HomePage() {
   return <div>Main Page</div>;
 }
-
-export default HomePage;
 
 export async function getServerSideProps() {
   return {

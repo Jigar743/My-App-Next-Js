@@ -14,4 +14,27 @@ export const API_ROUTES = {
   getAllUsers: `${clientURL}/users`,
   getCurrentUser: `${clientURL}/users/me`,
   updateUsers: (id) => `${clientURL}/users/${id}`,
+  fileUpload: `${clientURL}/media`,
 };
+
+// axios.interceptors.request.use(
+//   async (config) => {
+//     const token = cookiesMethods.get("token");
+//     if (token) {
+//       config.headers.Authorization = `${token}`;
+//     }
+
+//     return config;
+//   },
+//   (err) => Promise.reject(err)
+// );
+
+// axios.interceptors.response.use(undefined, (error) => {
+//   const { status } = error?.response;
+//   if (status === 403) {
+//     // logout();
+//     Router.replace("/login");
+//     return Promise.reject(err);
+//   }
+//   return Promise.reject(err);
+// });
