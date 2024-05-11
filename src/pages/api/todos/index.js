@@ -1,6 +1,6 @@
-import { getAllTodos } from "@/server/controllers/TodosController";
+import { getTodosOfUser } from "@/server/controllers/TodosController";
 import { protectedHandler } from "@/utils/Handle";
 
-protectedHandler.get(getAllTodos);
+protectedHandler.get(getTodosOfUser);
 
 export default protectedHandler;

@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const FormContainer = styled.div`
   width: 50%;
-  margin: auto;
+  margin: 0 auto;
+  padding: 10px;
 `;
 
-export const Form = styled.form`
+export const CustomForm = styled.form`
   border: 0.15rem solid #9da2a742;
   padding: 20px;
   display: flex;
@@ -15,7 +16,7 @@ export const Form = styled.form`
   margin-bottom: 10px;
 `;
 
-export const Button = styled.button`
+export const CustomButton = styled.button`
   width: 100%;
   height: 50px;
   font-size: 27px;
@@ -25,7 +26,7 @@ export const Button = styled.button`
   cursor: pointer;
 `;
 
-export const Input = styled.input`
+export const CustomInput = styled.input`
   height: 50px;
   border: 1px solid #aeaeae;
   border-radius: 5px;
@@ -37,7 +38,7 @@ export const Input = styled.input`
   }
 `;
 
-export const FormField = styled.div`
+export const CustomFormField = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;

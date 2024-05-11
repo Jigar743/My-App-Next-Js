@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import {
-  Button,
-  Form,
+  CustomButton,
+  CustomForm,
   FormContainer,
-  FormField,
-  Input,
+  CustomFormField,
+  CustomInput,
 } from "../../../styles/FormStyling.styled";
 
 export default function ForgetPasswordForm() {
@@ -12,10 +12,10 @@ export default function ForgetPasswordForm() {
 
   return (
     <FormContainer>
-      <Form method="POST">
-        <FormField>
+      <CustomForm method="POST">
+        <CustomFormField>
           <label htmlFor="emailId">Email: </label>
-          <Input
+          <CustomInput
             id="emailId"
             type="email"
             name="email"
@@ -23,9 +23,9 @@ export default function ForgetPasswordForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-        </FormField>
-        <Button>Submit</Button>
-      </Form>
+        </CustomFormField>
+        <CustomButton>Submit</CustomButton>
+      </CustomForm>
     </FormContainer>
   );
 }

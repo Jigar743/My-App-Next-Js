@@ -72,10 +72,14 @@ export const sidebarList = [
   //   title: "Money spend spliter",
   //   redirection: "/money-spliter",
   // },
-  {
-    title: "File Upload",
-    redirection: "/file-upload"
-  }
+  // {
+  //   title: "File Upload",
+  //   redirection: "/file-upload",
+  // },
+  // {
+  //   title: "Token",
+  //   redirection: "/token-details",
+  // },
 ];
 
 export const publicRoute = [
@@ -83,4 +87,20 @@ export const publicRoute = [
   "/signup",
   "/otp-verification",
   "/forget-password",
+];
+
+export const sidebarHideRoutes = [
+  "/users/setting/edit-user",
+  "/users/setting/change-password",
+];
+
+export const userSettingSidebarList = [
+  {
+    title: "Edit profile",
+    redirection: "/users/setting/edit-user",
+  },
+  {
+    title: "Change password",
+    redirection: "/users/setting/change-password",
+  },
 ];

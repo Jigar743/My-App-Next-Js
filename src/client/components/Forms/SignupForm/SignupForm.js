@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { API_ROUTES } from "../../../../utils/ApiManage";
 import { useRouter } from "next/router";
 import {
-  Button,
-  Form,
+  CustomButton,
+  CustomForm,
   FormContainer,
-  FormField,
-  Input,
+  CustomFormField,
+  CustomInput,
 } from "../../../styles/FormStyling.styled";
 import Link from "next/link";
 import axios from "axios";
@@ -48,10 +48,10 @@ export default function SignupForm() {
 
   return (
     <FormContainer>
-      <Form method="POST" onSubmit={handleSubmit}>
-        <FormField>
+      <CustomForm method="POST" onSubmit={handleSubmit}>
+        <CustomFormField>
           <label htmlFor="nameId">Name: </label>
-          <Input
+          <CustomInput
             id="nameId"
             type="text"
             name="userName"
@@ -62,10 +62,10 @@ export default function SignupForm() {
               setInputFields((v) => ({ ...v, name: e.target.value }))
             }
           />
-        </FormField>
-        <FormField>
+        </CustomFormField>
+        <CustomFormField>
           <label htmlFor="emailId">Email: </label>
-          <Input
+          <CustomInput
             id="emailId"
             type="email"
             name="userEmail"
@@ -76,10 +76,10 @@ export default function SignupForm() {
               setInputFields((v) => ({ ...v, email: e.target.value }))
             }
           />
-        </FormField>
-        <FormField>
+        </CustomFormField>
+        <CustomFormField>
           <label htmlFor="passwordId">Password: </label>
-          <Input
+          <CustomInput
             id="passwordId"
             type="password"
             name="userPassword"
@@ -90,9 +90,9 @@ export default function SignupForm() {
               setInputFields((v) => ({ ...v, password: e.target.value }))
             }
           />
-        </FormField>
-        <Button type="submit">Signup</Button>
-      </Form>
+        </CustomFormField>
+        <CustomButton type="submit">Signup</CustomButton>
+      </CustomForm>
       <p>
         Already have account? <Link href={"/login"}>Signin</Link>
       </p>

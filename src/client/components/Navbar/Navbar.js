@@ -10,10 +10,10 @@ function Navbar() {
 
   return (
     <StyledNavbar>
-      <div className="navbar-brand">
+      <div className="navbar-brand navbar-left-items">
         <p>Brand</p>
       </div>
-      <div className="navbar-links">
+      <div className="navbar-links navbar-right-items">
         {!isUserLoggedIn ? (
           <>
             <button
@@ -43,10 +43,10 @@ function Navbar() {
               <div className="popover">
                 <button
                   onClick={() => {
-                    router.replace(`/users/edit-user`);
+                    router.replace(`/users/setting/edit-user`);
                   }}
                 >
-                  Edit Profile
+                  Setting
                 </button>
                 <button onClick={logout}>Logout</button>
               </div>

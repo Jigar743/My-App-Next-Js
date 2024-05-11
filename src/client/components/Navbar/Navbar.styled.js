@@ -8,16 +8,15 @@ export const StyledNavbar = styled.div`
   color: #fff;
   height: 60px;
   padding: 0 20px;
-  margin-bottom: 20px;
-
-  .navbar-brand {
+  
+  .navbar-left-items {
     font-size: 24px;
     font-weight: bold;
     text-decoration: none;
     color: #fff;
   }
 
-  .navbar-links {
+  .navbar-right-items {
     display: flex;
     align-items: center;
 
@@ -25,9 +24,9 @@ export const StyledNavbar = styled.div`
       margin: 0 10px;
       text-decoration: none;
       color: #fff;
-      background: none;
+      background: transparent;
       font-size: larger;
-      width: 100px;
+      padding: 2px 20px;
       &:hover {
         color: #ccc;
         cursor: pointer;

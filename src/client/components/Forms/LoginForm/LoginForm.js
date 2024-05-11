@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import {
-  Button,
-  Form,
+  CustomButton,
+  CustomForm,
   FormContainer,
-  FormField,
-  Input,
+  CustomFormField,
+  CustomInput,
 } from "../../../styles/FormStyling.styled";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -36,6 +36,7 @@ export default function LoginForm() {
           password: "",
         });
         localStorageMethods.setItem("token", response.data.token);
+        localStorageMethods.setItem("loggedIn-Time", new Date())
         cookiesMethods.set("token", response.data.token);
         router.replace("/");
         message.success("Successfully logged in!");
@@ -47,10 +48,10 @@ export default function LoginForm() {
 
   return (
     <FormContainer>
-      <Form method="POST" onSubmit={handleSubmit}>
-        <FormField>
+      <CustomForm method="POST" onSubmit={handleSubmit}>
+        <CustomFormField>
           <label htmlFor="emailId">Email: </label>
-          <Input
+          <CustomInput
             id="emailId"
             type="email"
             name="email"
@@ -60,10 +61,10 @@ export default function LoginForm() {
               setInputFields((v) => ({ ...v, email: e.target.value }))
             }
           />
-        </FormField>
-        <FormField topMargin>
+        </CustomFormField>
+        <CustomFormField topMargin>
           <label htmlFor="passwordId">Password: </label>
-          <Input
+          <CustomInput
             id="passwordId"
             type="password"
             name="password"
@@ -73,9 +74,9 @@ export default function LoginForm() {
               setInputFields((v) => ({ ...v, password: e.target.value }))
             }
           />
-        </FormField>
-        <Button type="submit">Login</Button>
-      </Form>
+        </CustomFormField>
+        <CustomButton type="submit">Login</CustomButton>
+      </CustomForm>
       <p style={{ display: "flex", justifyContent: "space-between" }}>
         <span>
           Don&apos;t have Account?{" "}

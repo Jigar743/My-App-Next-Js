@@ -1,11 +1,18 @@
 import styled from "styled-components";
 
+export const GlobalLayoutStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`;
+
 export const PageWrapper = styled.div`
   display: flex;
   gap: 20px;
-  margin: 20px 40px;
+  flex: 1;
+  padding: 10px;
+`;
 
-  .page_right_content {
-    width: 75%;
-  }
+export const PageRightContainer = styled.div`
+  width: 75%;
 `;
