@@ -1,6 +1,6 @@
 import { signupUser } from "@/server/controllers/AuthController";
 import handler from "@/utils/Handle";
 
-handler.post(signupUser);
+const hand = handler.post(signupUser);
 
-export default handler;
+export default hand;

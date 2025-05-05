@@ -19,8 +19,35 @@ const userSchema = new mongoose.Schema(
     active: {
       type: Boolean,
     },
+    dateOfBirth: {
+      type: Date,
+      default: Date.now,
+    },
+    phoneNumber: {
+      type: String,
+      default: "000-000-0000",
+    },
+    profilePhoto: {
+      type: String,
+      default: "",
+    },
+    gender: {
+      type: String,
+      enum: ["male", "female", "others"],
+      default: "others",
+    },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    versionKey: false,
+    toJSON: {
+      transform: function (doc, ret) {
+        delete ret.password;
+
+        return ret;
+      },
+    },
+  }
 );
 
 const User =

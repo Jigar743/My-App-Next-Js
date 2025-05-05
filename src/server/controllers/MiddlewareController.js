@@ -1,7 +1,7 @@
 import { decodeUser } from "@/utils/decodeUser";
 
 const verifyToken = async (req, res, next) => {
-  const token = req.cookies.token;
+  const token = req.headers["authorization"];
   if (!token) {
     res.status(403).json({ message: "Unauthorised User!" });
   } else {
@@ -13,7 +13,7 @@ const verifyToken = async (req, res, next) => {
         next();
       }
     } catch (error) {
-      res.status(403).json({ message: "UnAuthorized User!" });
+      res.status(403).json({ message: "Unauthorized User!" });
     }
   }
 };

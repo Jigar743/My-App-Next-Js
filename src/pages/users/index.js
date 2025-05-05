@@ -14,7 +14,7 @@ export default function UsersPage() {
       const response = await axios.get(API_ROUTES.getAllUsers);
 
       if (response?.status === 200) {
-        setUsers(JSON.parse(JSON.stringify(response?.data.allUsers)));
+        setUsers(JSON.parse(JSON.stringify(response?.data?.allUsers || [])));
       }
     };
 

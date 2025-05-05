@@ -1,6 +1,6 @@
 import { createTodo } from "@/server/controllers/TodosController";
 import { protectedHandler } from "@/utils/Handle";
 
-protectedHandler.post(createTodo);
+const handler = protectedHandler.post(createTodo);
 
-export default protectedHandler;
+export default handler;

@@ -1,6 +1,6 @@
 import { getCurrentUser } from "@/server/controllers/UserControllers";
 import handler from "@/utils/Handle";
 
-handler.get(getCurrentUser);
+const hand = handler.get(getCurrentUser);
 
-export default handler;
+export default hand;

@@ -1,5 +1,7 @@
-import FileUpload from "@/client/components/FileUpload/FileUpload";
+// import FileUpload from "@/client/components/FileUpload/FileUpload";
 
 export default function FileUploaderPage() {
-  return <FileUpload />;
+  // return <FileUpload />;
+
+  return <></>;
 }
