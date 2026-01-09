@@ -4,9 +4,11 @@ import { useRouter } from "next/router";
 import {
   Button,
   Form,
+  FormCard,
   FormContainer,
   FormField,
   Input,
+  FormFooter,
 } from "../../../styles/FormStyling.styled";
 import Link from "next/link";
 import axios from "axios";
@@ -31,11 +33,6 @@ export default function SignupForm() {
         password,
       });
       if (response.status === 201) {
-        setInputFields({
-          name: "",
-          email: "",
-          password: "",
-        });
         localStorageMethods.setItem("token", response.data.token);
         cookiesMethods.set("token", response.data.token);
         router.replace("/");
@@ -48,54 +45,57 @@ export default function SignupForm() {
 
   return (
     <FormContainer>
-      <Form method="POST" onSubmit={handleSubmit}>
-        <FormField>
-          <label htmlFor="nameId">Name: </label>
-          <Input
-            id="nameId"
-            type="text"
-            name="userName"
-            placeholder="Enter name"
-            required
-            value={inputFields.name}
-            onChange={(e) =>
-              setInputFields((v) => ({ ...v, name: e.target.value }))
-            }
-          />
-        </FormField>
-        <FormField>
-          <label htmlFor="emailId">Email: </label>
-          <Input
-            id="emailId"
-            type="email"
-            name="userEmail"
-            placeholder="Enter email"
-            required
-            value={inputFields.email}
-            onChange={(e) =>
-              setInputFields((v) => ({ ...v, email: e.target.value }))
-            }
-          />
-        </FormField>
-        <FormField>
-          <label htmlFor="passwordId">Password: </label>
-          <Input
-            id="passwordId"
-            type="password"
-            name="userPassword"
-            placeholder="Enter password"
-            required
-            value={inputFields.password}
-            onChange={(e) =>
-              setInputFields((v) => ({ ...v, password: e.target.value }))
-            }
-          />
-        </FormField>
-        <Button type="submit">Signup</Button>
-      </Form>
-      <p>
-        Already have account? <Link href={"/login"}>Signin</Link>
-      </p>
+      <FormCard>
+        <Form onSubmit={handleSubmit}>
+          <FormField>
+            <label htmlFor="nameId">Name</label>
+            <Input
+              id="nameId"
+              type="text"
+              placeholder="John Doe"
+              required
+              value={inputFields.name}
+              onChange={(e) =>
+                setInputFields((v) => ({ ...v, name: e.target.value }))
+              }
+            />
+          </FormField>
+
+          <FormField>
+            <label htmlFor="emailId">Email</label>
+            <Input
+              id="emailId"
+              type="email"
+              placeholder="you@example.com"
+              required
+              value={inputFields.email}
+              onChange={(e) =>
+                setInputFields((v) => ({ ...v, email: e.target.value }))
+              }
+            />
+          </FormField>
+
+          <FormField>
+            <label htmlFor="passwordId">Password</label>
+            <Input
+              id="passwordId"
+              type="password"
+              placeholder="••••••••"
+              required
+              value={inputFields.password}
+              onChange={(e) =>
+                setInputFields((v) => ({ ...v, password: e.target.value }))
+              }
+            />
+          </FormField>
+
+          <Button type="submit">Create account</Button>
+        </Form>
+
+        <FormFooter>
+          Already have an account? <Link href="/login">Sign in</Link>
+        </FormFooter>
+      </FormCard>
     </FormContainer>
   );
 }

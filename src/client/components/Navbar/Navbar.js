@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/Auth/Auth";
 import { StyledNavbar } from "./Navbar.styled";
+import ThemeToggle from "./ThemeToggle";
 
 function Navbar() {
   const router = useRouter();
@@ -10,45 +11,47 @@ function Navbar() {
 
   return (
     <StyledNavbar>
-      <div className="navbar-brand">
-        <p>Brand</p>
+      <div className="navbar-brand" onClick={() => router.replace("/")}>
+        Brand
       </div>
+
       <div className="navbar-links">
+        <ThemeToggle />
+
         {!isUserLoggedIn ? (
           <>
-            <button
-              onClick={() => {
-                router.replace("/signup");
-              }}
-            >
-              Sign Up
-            </button>
-            <button
-              onClick={() => {
-                router.replace("/login");
-              }}
-            >
-              Login
-            </button>
+            <button onClick={() => router.replace("/signup")}>Sign Up</button>
+            <button onClick={() => router.replace("/login")}>Login</button>
           </>
         ) : (
           <div className="profile-popover">
             <button
               className="popover-btn"
-              onClick={() => setPopOverToggle(!popOverToggle)}
+              onClick={() => setPopOverToggle((v) => !v)}
             >
               Profile
             </button>
+
             {popOverToggle && (
               <div className="popover">
                 <button
                   onClick={() => {
-                    router.replace(`/users/edit-user`);
+                    setPopOverToggle(false);
+                    router.replace("/users/edit-user");
                   }}
                 >
                   Edit Profile
                 </button>
-                <button onClick={logout}>Logout</button>
+
+                <button
+                  className="logout-btn"
+                  onClick={() => {
+                    setPopOverToggle(false);
+                    logout();
+                  }}
+                >
+                  Logout
+                </button>
               </div>
             )}
           </div>

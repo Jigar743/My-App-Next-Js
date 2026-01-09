@@ -3,6 +3,17 @@ import { API_ROUTES } from "@/utils/ApiManage";
 import { message } from "antd";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import {
+  TodoPageWrapper,
+  TodoHeader,
+  TodoTitle,
+  AddButton,
+  LoadingText,
+  TodoList,
+  TodoCard,
+  TodoText,
+  EmptyState,
+} from "../../client/styles/Todos.styled";
 
 export default function TodoPage() {
   const [todos, setTodos] = useState([]);
@@ -15,14 +26,10 @@ export default function TodoPage() {
       setLoading(true);
       try {
         const response = await axios.get(API_ROUTES.getTodosByUser, {
-          params: {
-            id: _id,
-          },
+          params: { id: _id },
         });
         if (response.status === 200) {
           setTodos(response.data?.Todos);
-          console.log({ response });
-          // message.success("Todos fetched successfully", 5);
         }
       } catch (e) {
         console.log(e);
@@ -33,24 +40,12 @@ export default function TodoPage() {
   }, []);
 
   const handleSubmit = async () => {
-    // e.preventDefault();
-
-    // const Todo = {
-    //   title: "I have to buy a milk.",
-    //   description: "any thing you want to add, beacause this is description!",
-    //   status: "pending",
-    //   priority: "low",
-    //   dueDate: new Date("20 march 2024").toISOString(),
-    // };
-
     try {
       const response = await axios.post(API_ROUTES.createTodos, {
         // ...Todo,
       });
 
       if (response.status === 201) {
-        console.log("success");
-        console.log({ response });
         message.success("Todo added successfully", 5);
       }
     } catch (e) {
@@ -59,28 +54,44 @@ export default function TodoPage() {
   };
 
   return (
-    <div>
-      <div>
-        <span>Todo Create space</span>
-        <button onClick={handleSubmit}>Add</button>
-      </div>
-      {loading && <div>Loading...</div>}
+    <TodoPageWrapper>
+      <TodoHeader>
+        <TodoTitle>Todo Create space</TodoTitle>
+        <AddButton onClick={handleSubmit}>Add</AddButton>
+      </TodoHeader>
+
+      {loading && <LoadingText>Loading...</LoadingText>}
+
       {!loading && todos?.length > 0 ? (
-        todos?.map((todo) => {
-          return (
-            <div key={todo._id}>
-              <p>{todo.title}</p>
-              <p>{todo.description}</p>
-              <p>{todo.status}</p>
-              <p>{todo.priority}</p>
-              <p>{todo.dueDate}</p>
-              <p>{todo.completionDate || "-"}</p>
-            </div>
-          );
-        })
+        <TodoList>
+          {todos.map((todo) => (
+            <TodoCard key={todo._id}>
+              <TodoText>
+                <span>Title:</span> {todo.title}
+              </TodoText>
+              <TodoText>
+                <span>Description:</span> {todo.description}
+              </TodoText>
+              <TodoText>
+                <span>Status:</span> {todo.status}
+              </TodoText>
+              <TodoText>
+                <span>Priority:</span> {todo.priority}
+              </TodoText>
+              <TodoText>
+                <span>Due Date:</span> {todo.dueDate}
+              </TodoText>
+              <TodoText>
+                <span>Completed:</span> {todo.completionDate || "-"}
+              </TodoText>
+            </TodoCard>
+          ))}
+        </TodoList>
       ) : (
-        <div>No todos found, please create first!</div>
+        !loading && (
+          <EmptyState>No todos found, please create first!</EmptyState>
+        )
       )}
-    </div>
+    </TodoPageWrapper>
   );
 }

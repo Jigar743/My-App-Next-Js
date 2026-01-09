@@ -2,7 +2,15 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "@/client/context/Auth/Auth";
 import { API_ROUTES } from "@/utils/ApiManage";
-import { UsersListStyled } from "@/client/styles/Users.styled";
+import {
+  UsersListStyled,
+  UsersWrapper,
+  UsersTitle,
+  UserItem,
+  Avatar,
+  UserName,
+  YouBadge,
+} from "@/client/styles/Users.styled";
 
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
@@ -12,24 +20,31 @@ export default function UsersPage() {
   useEffect(() => {
     const fetchUsers = async () => {
       const response = await axios.get(API_ROUTES.getAllUsers);
-
       if (response?.status === 200) {
-        setUsers(JSON.parse(JSON.stringify(response?.data?.allUsers || [])));
+        setUsers(response?.data?.allUsers || []);
       }
     };
-
     fetchUsers();
   }, []);
 
   return (
-    <UsersListStyled>
-      {users?.map((u) => {
-        return (
-          <li key={u._id.toString()}>
-            {u.name} {_id.toString() === u._id.toString() && "(You)"}
-          </li>
-        );
-      })}
-    </UsersListStyled>
+    <UsersWrapper>
+      <UsersTitle>All Users</UsersTitle>
+
+      <UsersListStyled>
+        {users.map((u) => {
+          const isYou = _id.toString() === u._id.toString();
+          return (
+            <UserItem key={u._id} isYou={isYou}>
+              <Avatar>{u.name.charAt(0)}</Avatar>
+              <UserName>
+                {u.name}
+                {isYou && <YouBadge>You</YouBadge>}
+              </UserName>
+            </UserItem>
+          );
+        })}
+      </UsersListStyled>
+    </UsersWrapper>
   );
 }

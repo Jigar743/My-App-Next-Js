@@ -9,15 +9,19 @@ export default function SideBar() {
   return (
     <SidebarStyled>
       <ul>
-        {sidebarList.map((sl, idx) => (
-          <li
-            key={idx}
-            className={router.pathname === sl.redirection ? "active" : ""}
-            onClick={() => router.push(sl.redirection)}
-          >
-            {sl.title}
-          </li>
-        ))}
+        {sidebarList.map((sl, idx) => {
+          const isActive = router.pathname === sl.redirection;
+
+          return (
+            <li
+              key={idx}
+              className={isActive ? "active" : ""}
+              onClick={() => router.push(sl.redirection)}
+            >
+              {sl.title}
+            </li>
+          );
+        })}
       </ul>
     </SidebarStyled>
   );

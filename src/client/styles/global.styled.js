@@ -1,18 +1,21 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-    *{
-        font-family: "Bebas Neue", cursive;
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-    body{
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-    a{
-        text-decoration: none;
-    }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont;
+  }
+
+  body {
+    background: ${({ theme }) => theme.colors.background};
+    color: ${({ theme }) => theme.colors.textPrimary};
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  a {
+    color: ${({ theme }) => theme.colors.primary};
+    text-decoration: none;
+  }
 `;
