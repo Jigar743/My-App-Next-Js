@@ -8,6 +8,8 @@ export const SidebarStyled = styled.aside`
   border-radius: 14px;
   padding: 20px 14px;
   margin-left: 24px;
+
+  border: 1px solid ${({ theme }) => theme.colors.border};
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 
   ul {
@@ -26,16 +28,18 @@ export const SidebarStyled = styled.aside`
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    color: #374151;
+
+    color: ${({ theme }) => theme.colors.textSecondary};
     transition: all 0.2s ease;
 
     &:hover {
-      background: #f3f4f6;
+      background: ${({ theme }) => theme.colors.background};
+      color: ${({ theme }) => theme.colors.textPrimary};
     }
 
     &.active {
-      background: #eef2ff;
-      color: #4338ca;
+      background: ${({ theme }) => `${theme.colors.primary}14`};
+      color: ${({ theme }) => theme.colors.primary};
       font-weight: 600;
     }
 
@@ -48,7 +52,7 @@ export const SidebarStyled = styled.aside`
       width: 4px;
       height: 60%;
       border-radius: 4px;
-      background: #6366f1;
+      background: ${({ theme }) => theme.colors.primary};
     }
   }
 `;

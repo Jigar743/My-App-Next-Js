@@ -2,11 +2,9 @@ import { AuthContext } from "@/client/context/Auth/Auth";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import {
-  ProfileWrapper,
   ProfileCard,
   SectionTitle,
   AvatarSection,
-  Avatar,
   UploadBtn,
   FormGrid,
   Field,
@@ -18,6 +16,8 @@ import {
   HeaderRow,
   StyledDatePicker,
   BackButton,
+  ProfileContainer,
+  AvatarCircle,
 } from "./../../client/styles/EditProfile.styled";
 import dayjs from "dayjs";
 
@@ -41,7 +41,7 @@ export default function EditMePage() {
   };
 
   return (
-    <ProfileWrapper>
+    <ProfileContainer>
       <ProfileCard>
         <HeaderRow>
           <BackButton onClick={() => router.back()}>← Back to Users</BackButton>
@@ -53,13 +53,21 @@ export default function EditMePage() {
 
         <SectionTitle style={{ marginTop: "16px" }}>Profile</SectionTitle>
 
-        <AvatarSection>
+        {/* <AvatarSection>
           <Avatar>{currentUser.name?.charAt(0)}</Avatar>
 
           <UploadBtn>
             Change photo
             <input type="file" hidden />
           </UploadBtn>
+        </AvatarSection> */}
+
+        <AvatarSection>
+          <AvatarCircle>{currentUser.name?.charAt(0)}</AvatarCircle>
+
+          <div>
+            <UploadBtn>Change photo</UploadBtn>
+          </div>
         </AvatarSection>
       </ProfileCard>
 
@@ -122,6 +130,6 @@ export default function EditMePage() {
           <Button secondary>Cancel</Button>
         </Actions>
       </ProfileCard>
-    </ProfileWrapper>
+    </ProfileContainer>
   );
 }

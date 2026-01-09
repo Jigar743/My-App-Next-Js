@@ -1,33 +1,39 @@
 import React, { useContext } from "react";
+import { useRouter } from "next/router";
 import Navbar from "../Navbar/Navbar";
 import SideBar from "../Sidebar/SideBar";
 import { AuthContext } from "../../context/Auth/Auth";
-import { PageWrapper } from "./Layout.styled";
+import { LayoutRoot, PageWrapper, ContentWrapper } from "./Layout.styled";
 
 function Layout({ children }) {
   const { isUserLoggedIn } = useContext(AuthContext);
+  const router = useRouter();
 
-  // we can do switch cases for layout for perticular page
-  // switch (key) {
-  //   case value:
+  // Pages where sidebar should NOT appear
+  const noSidebarRoutes = [
+    "/users/edit-user",
+    "/login",
+    "/signup",
+    "/forget-password",
+  ];
 
-  //     break;
-
-  //   default:
-  //     break;
-  // }
+  const hideSidebar = noSidebarRoutes.includes(router.pathname);
+  const centeredRoutes = ["/users/edit-user"];
+  const isCentered = centeredRoutes.includes(router.pathname);
 
   return (
-    <div>
+    <LayoutRoot>
       <Navbar />
-      {isUserLoggedIn && (
+
+      {isUserLoggedIn && !hideSidebar ? (
         <PageWrapper>
           <SideBar />
-          <div className="page_right_content">{children}</div>
+          <ContentWrapper>{children}</ContentWrapper>
         </PageWrapper>
+      ) : (
+        <ContentWrapper $centered={isCentered}>{children}</ContentWrapper>
       )}
-      {!isUserLoggedIn && children}
-    </div>
+    </LayoutRoot>
   );
 }
 
